@@ -1,0 +1,41 @@
+-- 1. Verify new employee is added correctly
+SELECT * FROM employees WHERE employee_id = 1001;
+
+-- 2. Check that mandatory fields are not null
+SELECT * FROM employees WHERE name IS NULL OR email IS NULL;
+
+-- 3. Check leave balance after leave is approved
+SELECT leave_balance FROM leave_records WHERE employee_id = 1001;
+
+-- 4. Validate leave status changes from 'Pending' to 'Approved'
+SELECT * FROM leave_requests WHERE employee_id = 1001 AND status = 'Approved';
+
+-- 5. Check overlapping leaves are restricted
+SELECT * FROM leave_requests 
+WHERE employee_id = 1001 
+AND leave_start BETWEEN '2024-03-01' AND '2024-03-15';
+
+-- 6. Payroll generated for employees who joined before the selected month
+SELECT * FROM payroll 
+WHERE employee_id IN (
+    SELECT employee_id FROM employees WHERE joining_date <= '2024-03-01'
+);
+
+-- 7. Salary mismatch detection (if any)
+SELECT * FROM payroll WHERE net_salary < 0;
+
+-- 8. Cross-check appraisal records for correct employee and period
+SELECT * FROM appraisals 
+WHERE employee_id = 1001 AND appraisal_year = '2024';
+
+-- 9. Join: Get employee name with approved leaves
+SELECT e.name, l.leave_type, l.status 
+FROM employees e 
+JOIN leave_requests l ON e.employee_id = l.employee_id 
+WHERE l.status = 'Approved';
+
+-- 10. Check duplicate employee entries (should return 0 rows ideally)
+SELECT employee_id, COUNT(*) 
+FROM employees 
+GROUP BY employee_id 
+HAVING COUNT(*) > 1;
