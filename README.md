@@ -52,7 +52,7 @@ This project contains the following:
 | File | Description |
 |------|-------------|
 | `HRMS_TestCases.xlsx` | 30 manual test cases with steps, expected & actual results |
-| `HRMS_Bug_Report_Sample.xlsx` | 30 realistic bug reports with severity & priority |
+| `HRMS_Bug_Report_Sample.xlsx` | 8 realistic bug reports with severity & priority |
 | `HRMS_SQL_Testing_Queries.txt` | SQL queries to validate backend operations |
 | `README.md` | Project summary and documentation |
 
@@ -83,7 +83,7 @@ Test cases include both **positive** and **negative scenarios**, covering edge c
 
 | Total Bugs | Status | Severity Breakdown | Priority |
 |------------|--------|--------------------|----------|
-| 30         | Open (sample) | Critical: 2, High: 10, Medium: 12, Low: 6 | Urgent, High, Medium, Low |
+| 8         | Open (sample) | Critical: 1, High: 4, Medium: 2, Low: 1 | Urgent, High, Medium, Low |
 
 Defects logged include functional issues, UI glitches, validation errors, business logic failures, and database mismatches.
 
